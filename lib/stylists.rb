@@ -6,7 +6,7 @@ class Stylists
     @id         = attributes.fetch(:id).to_i()
     @name       = attributes.fetch(:name)
   end
-  ######################## SINGLETON METHODS ########################
+######################## SINGLETON METHODS ########################
   define_singleton_method(:all) do
     all_stylists_query = DB.exec("SELECT * FROM stylists;")
     results_array = []
@@ -19,7 +19,14 @@ class Stylists
     results_array
   end
 
-  ######################## REGULAR METHODS ########################
+  define_singleton_method(:find) do |id|
+    Stylists.all().each() do |stylist|
+      if stylist.id == id
+        return stylist
+      end
+    end
+  end
+######################## REGULAR METHODS ########################
   define_method(:save) do
     result = DB.exec("INSERT INTO stylists (name) VALUES ('#{@name}') RETURNING id;")
     @id = result.first().fetch('id').to_i()

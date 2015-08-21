@@ -34,6 +34,14 @@ class Clients
     results_array
   end
 
+  define_singleton_method(:find) do |id|
+    Clients.all().each() do |client|
+      if client.id == id
+        return client
+      end
+    end
+  end
+
 ######################## REGULAR METHODS ########################
   define_method(:==) do |other_thing|
     self.id().eql?(other_thing.id)
@@ -56,5 +64,9 @@ class Clients
   #>EVERY TIME< I write a "delete" method, I think of a Deathnote scene. "*scribbling names down* DELETE DELETE DELETE DELETE DELETE . . ." <will try to make the image work on webpage if I have time>
   define_method(:delete) do
     DB.exec("DELETE FROM clients WHERE id = #{@id}")
+  end
+
+  define_method(:delete_from) do |pass_id|
+    DB.exec("DELETE FROM clients WHERE id = #{pass_id}")
   end
 end
