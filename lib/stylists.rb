@@ -8,7 +8,7 @@ class Stylists
     @client_id  = []
   end
   ######################## SINGLETON METHODS ########################
-  define_method(:all) do
+  define_singleton_method(:all) do
     all_stylists_query = DB.exec("SELECT * FROM stylists;")
     results_array = []
     all_stylists_query.each() do |stylist|
@@ -20,9 +20,13 @@ class Stylists
     results_array
   end
 
-
+  ######################## REGULAR METHODS ########################
   define_method(:save) do
-    result = DB.exec("INSERT INTO stylists (name, client_id) VALUES ('#{@name},#{@client_id}') RETURNING id;")
+    result = DB.exec("INSERT INTO stylists (name) VALUES ('#{@name}') RETURNING id;")
     @id = result.first().fetch('id').to_i()
+  end
+
+  define_method(:==) do |other_thing|
+    self.id().eql?(other_thing.id)
   end
 end

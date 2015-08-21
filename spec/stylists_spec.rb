@@ -36,6 +36,14 @@ describe(Stylists) do
     # end
   end
 #################### Singleton Method Testing #########################
+  describe('.all') do
+    it('should return the new stylist from the database') do
+      #You need really sharp scissors to cut Elven hair, apparently
+      new_stylist = Stylists.new({:id => nil, :name => "Edward Scissorhands"})
+      new_stylist.save()
+      expect(Stylists.all()).to eq([new_stylist])
+    end
+  end
 
 #################### Method Testing #########################
   # describe('#save') do
