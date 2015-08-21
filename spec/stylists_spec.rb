@@ -33,20 +33,14 @@ describe(Stylists) do
   end
 
 #################### Method Testing #########################
-    ####The reason I didnt include a save spec is because it gets tested heavily, and works earlier than this in the "describe('.all')" spec ####
-  describe('#stylist_client_matchup') do
-    it("should return the stylist ID after a stylist/client have been matched up") do
-      #Maybe Excalibur is sharp enough to cut Elven Hair?
+  ####The reason I didnt include a save and .== spec is because they get tested heavily, and works in earlier specs####
+  describe('#delete') do
+    it("should create, add, then delete a stylist entry") do
       new_stylist = Stylists.new({:id => nil, :name => "King Arthur"})
       new_stylist.save()
 
-      new_client = Clients.new({:id => nil, :name => "Arwen", :email => "none", :phone => 55555555, :address => "Some forest", :city => "Near Minas Tirith", :zip =>00004, :stylist_id => nil})
-      new_client.save()
-
-      new_client.set_stylist(new_stylist.id())
-
-      expect(new_client.stylist_id()).to eq(new_stylist.id())
-
+      new_stylist.delete()
+      expect(Stylists.all()).to eq([])
     end
   end
 end

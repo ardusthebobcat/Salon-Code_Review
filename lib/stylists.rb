@@ -13,7 +13,7 @@ class Stylists
     all_stylists_query.each() do |stylist|
       id   = stylist.fetch('id')
       name = stylist.fetch('name')
-      
+
       results_array.push(Stylists.new({:id => id, :name => name}))
     end
     results_array
@@ -29,8 +29,14 @@ class Stylists
     self.id().eql?(other_thing.id)
   end
 
-
   define_method(:update_stylist) do
     DB.exec("UPDATE stylists SET name='#{@name}' WHERE id = #{@id};")
+    #If stylist had multiple properties
+    #  DB.exec("UPDATE stylist SET property = #{@variable}, property = #{@variable} . . . WHERE id=#{@id};")
   end
+
+  define_method(:delete) do
+    DB.exec("DELETE FROM stylists WHERE id = #{@id}")
+  end
+
 end
