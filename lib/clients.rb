@@ -13,7 +13,7 @@ class Clients
     @address    = attributes.fetch(:address)
     @city       = attributes.fetch(:city)
     @zip        = attributes.fetch(:zip)
-    @stylist_id = nil
+    @stylist_id = attributes.fetch(:stylist_id, nil)
   end
 
 ######################## SINGLETON METHODS ########################

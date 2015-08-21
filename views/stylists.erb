@@ -1,0 +1,18 @@
+<h1> This is the Stylists page! </h1>
+
+<h2>List of hair-dressers: </h2>
+<ul>
+  <% @all_stylists.each do |stylists| %>
+    <li><a href="/stylists/<%= stylists.id %>"><%= stylists.name %></a>  -  <a href="/stylists/delete/<%= stylists.id %>"><span style="font-size: 8px;">DELETE</a> </li>
+  <% end %>
+</ul>
+<div class = "form_container">
+  <form action="/stylists/new" method = "post" style="margin: 0 0 10 0px;">
+    <label for="name">Name: </label>
+    <input type="text" id="name" name="name"><br><br>
+
+    <button type="submit">Add Stylist </button>
+  </form>
+</div>
+
+<a href="/"> Home </a>

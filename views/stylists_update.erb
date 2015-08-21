@@ -1,0 +1,13 @@
+<h1> You are now modifying stylist: <%= @one_stylist_name %> </h1>
+<h2> Their ID is: <%= @one_stylist.id %> </h2>
+
+
+<form action="/stylists_update/name" method="post">
+  <input type="hidden" id="id" name ="id" value="<%= @one_stylist.id %>">
+
+  <label for="name">Rename the stylist</label>
+  <input type="text" id="name" name="name">
+
+  <button name="rename">Rename</button>
+</form>
+<a href="/"> Home </a>
