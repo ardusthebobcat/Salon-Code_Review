@@ -22,19 +22,6 @@ describe(Stylists) do
       expect(new_stylist.name()).to eq("Darren")
     end
   end
-
-  describe('#client_id') do
-    it('returns the ids of clients assigned to a stylist, currently empty') do
-      new_stylist = Stylists.new({:id => nil, :name => "Sue"})
-      expect(new_stylist.client_id()).to eq([])
-    end
-
-    # it('returns the ids of clients assigned to a stylist') do
-    #   new_client = Clients.new({:id =>nil, :name => "Michael", :email => "some_gmail@gmail.com", :phone =>"111-111-1111", :address=>"404 Yellow Brick Rd.", :city => "Wizard_of_Oz", :zip =>00001, :stylist_id =>nil})
-    #   new_stylist = Stylists.new({:id => nil, :name => "Sue", :client_id => new_client})
-    #   expect(new_stylist.client_id()).to eq([new_client])
-    # end
-  end
 #################### Singleton Method Testing #########################
   describe('.all') do
     it('should return the new stylist from the database') do
@@ -46,9 +33,19 @@ describe(Stylists) do
   end
 
 #################### Method Testing #########################
-  # describe('#save') do
-  #   it("Tests the save method on Stylists") do
-  #     expect().to eq()
-  #   end
-  # end
+  describe('#stylist_client_matchup') do
+    it("should return the stylist ID after a stylist/client have been matched up") do
+      #Maybe Excalibur is sharp enough to cut Elven Hair?
+      new_stylist = Stylists.new({:id => nil, :name => "King Arthur"})
+      new_stylist.save()
+
+      new_client = Clients.new({:id => nil, :name => "Arwen", :email => "none", :phone => 55555555, :address => "Some forest", :city => "Near Minas Tirith", :zip =>00004, :stylist_id => nil})
+      new_client.save()
+
+      new_client.set_stylist(new_stylist.id())
+
+      expect(new_client.stylist_id()).to eq(new_stylist.id())
+
+    end
+  end
 end

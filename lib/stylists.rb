@@ -1,11 +1,10 @@
 class Stylists
 
-  attr_reader(:id, :name, :client_id)
+  attr_reader(:id, :name)
 
   define_method(:initialize) do |attributes|
     @id         = attributes.fetch(:id).to_i()
     @name       = attributes.fetch(:name)
-    @client_id  = []
   end
   ######################## SINGLETON METHODS ########################
   define_singleton_method(:all) do
@@ -14,8 +13,7 @@ class Stylists
     all_stylists_query.each() do |stylist|
       id  = stylist.fetch('id')
       name = stylist.fetch('name')
-      client_id = stylist.fetch('client_id')
-      results_array.push(Stylists.new({:id => id, :name => name, :client_id => client_id}))
+      results_array.push(Stylists.new({:id => id, :name => name}))
     end
     results_array
   end
@@ -28,5 +26,10 @@ class Stylists
 
   define_method(:==) do |other_thing|
     self.id().eql?(other_thing.id)
+  end
+
+
+  define_method(:update_stylist) do
+    DB.exec("UPDATE stylists SET name='#{@name}' WHERE id = #{@id};")
   end
 end

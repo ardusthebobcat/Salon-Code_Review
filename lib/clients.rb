@@ -1,3 +1,4 @@
+require('pry')
 class Clients
 
   attr_reader(:id, :name, :email, :phone, :address, :city, :zip, :stylist_id)
@@ -12,8 +13,22 @@ class Clients
     @address    = attributes.fetch(:address)
     @city       = attributes.fetch(:city)
     @zip        = attributes.fetch(:zip)
-    @stylist_id = attributes.fetch(:stylist_id)
+    @stylist_id = nil
   end
 
-  
+######################## REGULAR METHODS ########################
+  define_method(:update_client) do
+    DB.exec("UPDATE clients SET name='#{@name}', email = '#{@email}', phone = #{@phone}, address='#{@address}', city = '#{@city}', zip = #{@zip}, stylist_id = #{@stylist_id} WHERE id=#{@id};")
+  end
+
+  define_method(:save) do
+    result = DB.exec("INSERT INTO clients (name, email, phone, address, city, zip) VALUES ('#{@name}','#{@email}','#{@phone}','#{@address}','#{@city}',#{@zip}) RETURNING id;")
+    @id = result.first().fetch('id').to_i()
+  end
+
+
+  define_method(:set_stylist) do |pass_id|
+    @stylist_id = pass_id.to_i
+    self.update_client()
+  end
 end
