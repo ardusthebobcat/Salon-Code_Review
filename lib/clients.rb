@@ -14,4 +14,6 @@ class Clients
     @zip        = attributes.fetch(:zip)
     @stylist_id = attributes.fetch(:stylist_id)
   end
+
+  
 end

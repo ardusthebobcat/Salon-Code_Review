@@ -7,6 +7,8 @@ describe(Stylists) do
   #     expect().to eq()
   #   end
   # end
+
+####################ATTRIBUTE READER SPECS #########################
   describe('#id') do
     it('Returns the id of a new stylist') do
       new_stylist = Stylists.new({:id =>nil, :name => "Darren"})
@@ -33,4 +35,12 @@ describe(Stylists) do
     #   expect(new_stylist.client_id()).to eq([new_client])
     # end
   end
+#################### Singleton Method Testing #########################
+
+#################### Method Testing #########################
+  # describe('#save') do
+  #   it("Tests the save method on Stylists") do
+  #     expect().to eq()
+  #   end
+  # end
 end
