@@ -4,6 +4,7 @@ describe(Clients) do
   ## spec-template
   # describe('#') do
   #   it('') do
+  #new_client = Clients.new({:id =>nil, :name => "", :email => "@gmail.com", :phone =>"111-111-1111", :address=>"", :city => "", :zip =>00002, :stylist_id =>nil})
   #     expect().to eq()
   #   end
   # end
@@ -11,6 +12,13 @@ describe(Clients) do
     it('returns id of a new client') do
       new_client = Clients.new({:id =>nil, :name => "Michael", :email => "some_gmail@gmail.com", :phone =>"111-111-1111", :address=>"404 Yellow Brick Rd.", :city => "Wizard_of_Oz", :zip =>00001, :stylist_id =>nil})
       expect(new_client.id()).to eq(nil)
+    end
+  end
+
+  describe('#name') do
+    it('returns name of a new client') do
+      new_client = Clients.new({:id =>nil, :name => "Legolas", :email => "legolas_email@gmail.com", :phone =>"111-111-1111", :address=>"Near the forest", :city => "Rivendell", :zip =>00002, :stylist_id =>nil})
+      expect(new_client.name()).to eq("Legolas")
     end
   end
 end
