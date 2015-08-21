@@ -33,6 +33,7 @@ describe(Stylists) do
   end
 
 #################### Method Testing #########################
+    ####The reason I didnt include a save spec is because it gets tested heavily, and works earlier than this in the "describe('.all')" spec ####
   describe('#stylist_client_matchup') do
     it("should return the stylist ID after a stylist/client have been matched up") do
       #Maybe Excalibur is sharp enough to cut Elven Hair?

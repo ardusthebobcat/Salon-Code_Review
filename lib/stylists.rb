@@ -11,8 +11,9 @@ class Stylists
     all_stylists_query = DB.exec("SELECT * FROM stylists;")
     results_array = []
     all_stylists_query.each() do |stylist|
-      id  = stylist.fetch('id')
+      id   = stylist.fetch('id')
       name = stylist.fetch('name')
+      
       results_array.push(Stylists.new({:id => id, :name => name}))
     end
     results_array
