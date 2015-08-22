@@ -1,0 +1,7 @@
+<h2>List of hair-dressers: </h2>
+<h3> Click on a hairdresser to add them </h3>
+<ul>
+  <% @all_stylists.each do |stylists| %>
+    <li><a href="/choose_stylist/<%= @client_id %>/<%= stylists.id %>"><%= stylists.name %></a></li>
+  <% end %>
+</ul>

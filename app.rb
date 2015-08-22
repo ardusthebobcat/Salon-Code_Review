@@ -120,6 +120,26 @@ post("/clients_update/zip") do
   erb(:clients)
 end
 
+get('/choose_stylist/:id') do
+  @all_stylists = Stylists.all()
+  @client_id = params.fetch('id')
+  erb(:choose_stylist)
+end
+
+get('/choose_stylist/:id/:stylist_id') do
+  temp_id = params.fetch("id")
+  temp_stylist = params.fetch("stylist_id")
+
+  temp_client = Clients.find(temp_id)
+
+  temp_stylist_id =0
+
+  replace_client = Clients.new({:id => temp_id, :name => temp_client.name, :email => temp_client.email, :phone => temp_client.phone, :address => temp_client.address, :city => temp_client.city, :zip => temp_client.zip, :stylist_id => temp_stylist})
+  replace_client.update_client()
+  @all_clients = Clients.all()
+
+  redirect(:update_stylist)
+end
 
 get('/clients/delete/:id') do
   temp_id = params.fetch("id").to_i()
